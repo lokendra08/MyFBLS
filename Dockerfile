@@ -1,4 +1,4 @@
-FROM alpine:3.4
+FROM openjdk:8
 
 WORKDIR /app
 
@@ -8,8 +8,7 @@ ARG JAR_FILE=target/FBLS-*.jar
 # Add the application's jar to the container
 ADD ${JAR_FILE} FBLS.jar
 
-EXPOSE 6060
-EXPOSE 6061
+EXPOSE 8888
 
 #ENTRYPOINT ["java", "-jar", "/app/cart-comp-svc.jar"]
 ENTRYPOINT exec java -XX:+UseG1GC -Xmx3584M  -jar /app/FBLS.jar
